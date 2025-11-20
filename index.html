@@ -1,321 +1,134 @@
-<!doctype html>
-<html lang="id">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>OSIS SMK Negeri 2 Setu — Official</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Dengan Login</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    /* ===== Theme ===== */
-    :root{
-      --navy-900:#071226;
-      --navy-800:#0b2236;
-      --navy-700:#113049;
-      --green-500:#27ae60;
-      --green-400:#2ecc71;
-      --muted:#b8c6d6;
-      --glass: rgba(255,255,255,0.03);
-      --radius:12px;
-      --max-width:1100px;
-    }
-    
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:'Poppins',system-ui,Arial;
-      color:#eaf4f8;
-      background:linear-gradient(180deg,var(--navy-900),#071a2b 60%);
-      line-height:1.5;
-    }
-    a{color:inherit;text-decoration:none}
-
-    /* ===== Container ===== */
-    .container{max-width:var(--max-width);margin:0 auto;padding:0 20px}
-
-    /* ===== Navbar ===== */
-    nav{
-      position:fixed;left:0;right:0;top:0;z-index:50;
-      backdrop-filter:blur(6px);
-      background:rgba(8,18,30,0.45);
-      border-bottom:1px solid rgba(255,255,255,0.04);
-    }
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{
-      width:44px;height:44px;border-radius:10px;
-      background:linear-gradient(135deg,var(--navy-700),var(--navy-800));
-      display:flex;align-items:center;justify-content:center;
-      font-weight:700;color:var(--green-400);
-    }
-    .nav-links{display:flex;gap:18px}
-    .nav-links a{padding:8px 12px;border-radius:8px;color:var(--muted)}
-    .nav-links a:hover{color:var(--green-400);background:var(--glass)}
-    .btn-primary{
-      background:var(--green-500);padding:10px 14px;border-radius:10px;
-      color:#06221b;font-weight:600;transition:.25s ease;
-    }
-    .btn-primary:hover{transform:scale(1.06)}
-
-    .menu-toggle{display:none}
-
-    /* ===== Hero ===== */
-    .hero{min-height:72vh;display:flex;align-items:center}
-    .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:40px;align-items:center}
-    .hero-title{
-      font-size:44px;line-height:1.05;margin:0 0 14px;
-      background:linear-gradient(90deg,var(--green-400),#7be4a4);
-      -webkit-background-clip:text;color:transparent;
-    }
-    .hero-sub{color:var(--muted);margin:0 0 20px;font-size:17px}
-
-    .card-cta{
-      background:rgba(255,255,255,0.03);padding:18px;border-radius:14px;
-      border:1px solid rgba(255,255,255,0.04)
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #0a0a0a;
+        color: #fff;
     }
 
-    /* ===== Sections ===== */
-    section{padding:70px 0}
-    .section-title{font-size:26px;color:var(--green-400);margin-bottom:12px}
-    .lead{color:var(--muted);max-width:720px}
-
-    /* Cards */
-    .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-    .card{
-      background:rgba(255,255,255,0.02);padding:18px;border-radius:12px;
-      border:1px solid rgba(255,255,255,0.03);
-      transition:.3s ease;
-    }
-    .card:hover{
-      transform:translateY(-4px);
-      border-color:rgba(255,255,255,0.08);
-    }
-    .card p{color:var(--muted);font-size:14px}
-
-    /* Team */
-    .team{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px}
-    .member{
-      background:rgba(255,255,255,0.02);padding:14px;border-radius:12px;text-align:center;
-      transition:.3s ease;
-    }
-    .member:hover{transform:translateY(-4px)}
-    .avatar{
-      width:86px;height:86px;border-radius:12px;margin:0 auto 12px;
-      background:linear-gradient(135deg,var(--navy-700),var(--navy-800));
-      display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--green-400)
+    /* =====================
+       LOGIN PAGE
+    ====================== */
+    #login-page {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #111;
+        text-align: center;
     }
 
-    /* Gallery */
-    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
-    .gallery img{
-      width:100%;height:140px;object-fit:cover;border-radius:10px;
-      transition:.3s ease;
-    }
-    .gallery img:hover{transform:scale(1.04)}
-
-    /* Footer */
-    footer{padding:28px 0;color:var(--muted);text-align:center;border-top:1px solid rgba(255,255,255,0.02)}
-
-    /* ===== Animations ===== */
-    .fade-up{
-      opacity:0;transform:translateY(20px);
-      animation:fadeUp .7s ease forwards;
-    }
-    @keyframes fadeUp{
-      to{opacity:1;transform:translateY(0)}
-    }
-    .delay-1{animation-delay:.15s}
-    .delay-2{animation-delay:.3s}
-    .delay-3{animation-delay:.45s}
-
-    /* Scroll reveal */
-    .reveal{
-      opacity:0;transform:translateY(20px);
-      transition:0.7s ease;
-    }
-    .reveal.show{
-      opacity:1;transform:translateY(0);
+    #login-box {
+        background: #1a1a1a;
+        padding: 25px;
+        border-radius: 12px;
+        width: 300px;
+        box-shadow: 0 0 20px rgba(255,255,255,0.1);
+        animation: fadeUp 0.7s ease forwards;
+        opacity: 0;
     }
 
-    /* ===== Responsive ===== */
-    @media(max-width:980px){
-      .hero-grid{grid-template-columns:1fr}
-      .nav-links{display:none}
-      .menu-toggle{display:block;font-size:22px;background:none;border:0;color:white}
+    #login-box input {
+        width: 90%;
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 6px;
+        border: none;
+        outline: none;
     }
-  </style>
+
+    #login-box button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border: none;
+        background: #4e9cff;
+        color: #fff;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    #login-error {
+        color: #ff4e4e;
+        margin-top: 10px;
+        display: none;
+    }
+
+    @keyframes fadeUp {
+        to { opacity: 1; transform: translateY(0); }
+        from { opacity: 0; transform: translateY(20px); }
+    }
+
+    /* =====================
+       WEBSITE MAIN
+    ====================== */
+    #main-content {
+        display: none;
+        padding: 40px;
+    }
+
+    h1 {
+        text-align: center;
+    }
+</style>
 </head>
+
 <body>
 
-  <!-- NAVBAR -->
-  <nav>
-    <div class="container nav-inner fade-up delay-1">
-      <div class="brand">
-        <div class="logo">DS</div>
-        <div>
-          <h1 style="margin:0;font-size:16px;color:var(--muted)">OSIS SMKN 2 Setu</h1>
-          <p style="margin:0;font-size:12px;color:#98b0c6">Official — Dusett</p>
-        </div>
-      </div>
-
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#programs">Programs</a>
-        <a href="#team">Pengurus</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact" class="btn-primary">Contact</a>
-      </div>
-
-      <button class="menu-toggle">☰</button>
+<!-- =======================
+     LOGIN PAGE
+========================= -->
+<div id="login-page">
+    <div id="login-box">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Masuk</button>
+        <div id="login-error">Username atau password salah!</div>
     </div>
-  </nav>
+</div>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="container hero-grid fade-up delay-2">
-      <div>
-        <h2 class="hero-title">Membangun kepemimpinan dan kreativitas digital di SMK Negeri 2 Setu.</h2>
-        <p class="hero-sub">OSIS SMKN 2 Setu hadir sebagai wadah siswa untuk berkarya — melalui program kerja inovatif, event berkualitas, dan komunitas kreatif.</p>
+<!-- =======================
+     WEBSITE CONTENT
+========================= -->
+<div id="main-content">
+    <h1>SELAMAT DATANG!</h1>
+    <p>Website berhasil diakses setelah login.</p>
 
-        <div style="display:flex;gap:12px;margin-top:18px">
-          <a href="#programs" class="btn-primary">Lihat Program</a>
-          <a href="#about" style="padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.05);color:var(--muted);font-weight:600">Tentang Kami</a>
-        </div>
-      </div>
+    <p>Isi website kamu taruh di sini…</p>
+</div>
 
-      <aside class="card-cta fade-up delay-3">
-        <h3 style="margin:0;color:var(--green-400)">Info Singkat</h3>
-        <p class="muted">Terhubung dengan kami untuk update kegiatan dan dokumentasi.</p>
-        <strong>Visi</strong>
-        <p class="muted" style="font-size:13px;margin:6px 0 0">Menjadi organisasi siswa yang kreatif, berintegritas, dan adaptif teknologi.</p>
-      </aside>
-    </div>
-  </header>
+<script>
+    // =======================================
+    // GANTI PASSWORD DI SINI
+    // =======================================
+    const validUsername = "admin";
+    const validPassword = "12345";   // ganti sesuka kamu
 
-  <main>
+    function login() {
+        let user = document.getElementById("username").value;
+        let pass = document.getElementById("password").value;
+        let errorBox = document.getElementById("login-error");
 
-    <!-- ABOUT -->
-    <section id="about" class="container reveal">
-      <h3 class="section-title">Tentang OSIS</h3>
-      <p class="lead">OSIS SMK Negeri 2 Setu berperan aktif mengembangkan karakter, kepemimpinan, dan kreativitas siswa melalui program kerja yang relevan dan inovatif.</p>
-    </section>
-
-    <!-- PROGRAMS -->
-    <section id="programs" class="container reveal">
-      <h3 class="section-title">Program Unggulan</h3>
-      <div class="grid">
-        <div class="card">
-          <h4>Leadership & Training</h4>
-          <p>Pelatihan soft-skill dan kepemimpinan.</p>
-        </div>
-        <div class="card">
-          <h4>Tech Projects</h4>
-          <p>Pengembangan aplikasi, IoT, dan konten digital.</p>
-        </div>
-        <div class="card">
-          <h4>Event & Community</h4>
-          <p>Penyelenggaraan festival, lomba, workshop.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- TEAM -->
-    <section id="team" class="container reveal">
-      <h3 class="section-title">Pengurus OSIS</h3>
-      <div class="team">
-        <div class="member">
-          <div class="avatar">KA</div>
-          <h5>Kepala OSIS</h5>
-          <small class="muted">Nama Lengkap</small>
-        </div>
-
-        <div class="member">
-          <div class="avatar">WK</div>
-          <h5>Wakil</h5>
-          <small class="muted">Nama Lengkap</small>
-        </div>
-
-        <div class="member">
-          <div class="avatar">DK</div>
-          <h5>Sekretaris</h5>
-          <small class="muted">Nama Lengkap</small>
-        </div>
-
-        <div class="member">
-          <div class="avatar">BM</div>
-          <h5>Bendahara</h5>
-          <small class="muted">Nama Lengkap</small>
-        </div>
-      </div>
-    </section>
-
-    <!-- GALLERY -->
-    <section id="gallery" class="container reveal">
-      <h3 class="section-title">Dokumentasi Kegiatan</h3>
-      <div class="gallery">
-        <img src="https://images.unsplash.com/photo-1515165562835-c92f2f3f25d8?q=80" />
-        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80" />
-        <img src="https://images.unsplash.com/photo-1525373693036-012d6b1d8c5d?q=80" />
-        <img src="https://images.unsplash.com/photo-1508931132296-9b6a5d0f62f1?q=80" />
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="container reveal">
-      <h3 class="section-title">Kontak & Sosial</h3>
-      <div style="display:grid;grid-template-columns:1fr 320px;gap:18px">
-        <div class="card">
-          <h4>Hubungi Kami</h4>
-          <p class="muted">
-            Instagram: <strong>@osis.duasetu</strong><br>
-            Email: <strong>osis@smkn2setu.sch.id</strong><br>
-            Alamat: SMK Negeri 2 Setu
-          </p>
-        </div>
-
-        <div class="card">
-          <h4>Newsletter</h4>
-          <p class="muted">Masukkan email untuk update kegiatan.</p>
-          <form onsubmit="event.preventDefault();alert('Terima kasih! (contoh)');" style="display:flex;gap:8px;margin-top:10px">
-            <input type="email" required placeholder="email@domain.com" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.05);background:transparent;color:white">
-            <button class="btn-primary">Daftar</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="container">© <span id="year"></span> OSIS SMK Negeri 2 Setu • All rights reserved</div>
-  </footer>
-
-  <script>
-    // Set tahun footer
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener("click", e=>{
-        e.preventDefault();
-        const id = a.getAttribute("href").slice(1);
-        const el = document.getElementById(id);
-        if(el) el.scrollIntoView({behavior:"smooth"});
-      });
-    });
-
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          entry.target.classList.add("show");
+        if (user === validUsername && pass === validPassword) {
+            // Tampilkan website
+            document.getElementById("login-page").style.display = "none";
+            document.getElementById("main-content").style.display = "block";
+        } else {
+            errorBox.style.display = "block";
         }
-      });
-    },{threshold:0.15});
-    document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
-  </script>
+    }
+</script>
 
 </body>
 </html>
+a
