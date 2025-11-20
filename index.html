@@ -1,12 +1,189 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>OSIS SMKN 2 Setu</title>
-  </head>
-  <body>
-    <h1>Selamat Datang di Website OSIS SMKN 2 Setu</h1>
-    <p>Website ini akan segera diisi konten OSIS.</p>
-  </body>
-</html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSIS SMK Negeri 2 Setu</title>
 
+    <style>
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            background: #0D1117;
+            color: #E6EDF3;
+        }
+
+        /* NAVBAR */
+        nav {
+            width: 100%;
+            padding: 20px 40px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav h1 {
+            margin: 0;
+            font-size: 22px;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        nav a {
+            color: #E6EDF3;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #00C6FF;
+        }
+
+        /* HERO */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            background: linear-gradient(120deg,#0D1117,#0F141B,#1A2330);
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero h2 {
+            font-size: 50px;
+            margin: 0 0 10px;
+            background: linear-gradient(90deg,#00C6FF,#4B9FFF,#A6C7FF);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.8;
+        }
+
+        .btn {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 8px;
+            background: #00C6FF;
+            color: #000;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #4B9FFF;
+        }
+
+        /* SECTION */
+        section {
+            padding: 80px 10%;
+        }
+
+        h3 {
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: #A6C7FF;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .card {
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #00C6FF;
+            box-shadow: 0 0 15px #00c7ff2a;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            opacity: 0.5;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <h1>OSIS SMKN 2 SETU</h1>
+        <div>
+            <a href="#about">About</a>
+            <a href="#program">Programs</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-text">
+            <h2>OSIS SMK Negeri 2 Setu</h2>
+            <p>Mengembangkan kreativitas, kepemimpinan, dan inovasi siswa melalui kegiatan yang modern, elegan, dan berjiwa teknologi.</p>
+            <a href="#about" class="btn">Explore Now</a>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <h3>Tentang OSIS</h3>
+        <p>OSIS SMK Negeri 2 Setu adalah organisasi yang berfokus pada pengembangan karakter, kreativitas, leadership, dan partisipasi aktif siswa dalam menciptakan lingkungan sekolah yang inovatif dan inspiratif.</p>
+    </section>
+
+    <!-- PROGRAM -->
+    <section id="program">
+        <h3>Program Unggulan</h3>
+        <div class="grid">
+            <div class="card">
+                <h4>Leadership & Training</h4>
+                <p>Melatih kemampuan kepemimpinan untuk membentuk generasi siswa aktif dan bertanggung jawab.</p>
+            </div>
+            <div class="card">
+                <h4>Event & Projects</h4>
+                <p>Menghadirkan berbagai kegiatan kreatif, kompetisi, dan projek berbasis teknologi.</p>
+            </div>
+            <div class="card">
+                <h4>Student Community</h4>
+                <p>Membangun ruang kolaborasi antar siswa untuk berkarya dan berprestasi.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <h3>Contact</h3>
+        <p>Instagram: @osis.duasetu<br>Email: osis@smkn2setu.sch.id</p>
+    </section>
+
+    <footer>
+        © 2025 OSIS SMKN 2 Setu — All Rights Reserved
+    </footer>
+
+</body>
+</html>
