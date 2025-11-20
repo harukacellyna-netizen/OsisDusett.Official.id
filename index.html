@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,181 +9,152 @@
         body {
             margin: 0;
             font-family: "Poppins", sans-serif;
-            background: #0D1117;
-            color: #E6EDF3;
+            background: #0A0F29; /* Biru navy tua */
+            color: white;
         }
 
-        /* NAVBAR */
-        nav {
-            width: 100%;
-            padding: 20px 40px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0;
+        header {
+            background: linear-gradient(135deg, #0D1A45, #0A0F29);
+            color: white;
+            padding: 25px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0px 4px 20px rgba(0,0,0,0.4);
         }
 
-        nav h1 {
+        header h1 {
+            font-size: 26px;
             margin: 0;
-            font-size: 22px;
-            letter-spacing: 1px;
             font-weight: 600;
         }
 
         nav a {
-            color: #E6EDF3;
-            margin-left: 20px;
+            margin: 0 15px;
+            color: #82ff9e; /* Hijau neon lembut */
             text-decoration: none;
             font-weight: 500;
             transition: 0.3s;
         }
 
         nav a:hover {
-            color: #00C6FF;
+            color: white;
+            text-shadow: 0 0 10px #82ff9e;
         }
 
-        /* HERO */
         .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 10%;
-            background: linear-gradient(120deg,#0D1117,#0F141B,#1A2330);
-        }
-
-        .hero-text {
-            max-width: 600px;
+            text-align: center;
+            padding: 120px 40px;
+            background: url("https://images.unsplash.com/photo-1581091870632-7c81f3f6e61f") center/cover no-repeat fixed;
+            backdrop-filter: blur(4px);
         }
 
         .hero h2 {
-            font-size: 50px;
-            margin: 0 0 10px;
-            background: linear-gradient(90deg,#00C6FF,#4B9FFF,#A6C7FF);
-            -webkit-background-clip: text;
-            color: transparent;
+            font-size: 42px;
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(0,0,0,0.7);
         }
 
         .hero p {
             font-size: 18px;
-            opacity: 0.8;
+            margin-top: -10px;
         }
 
         .btn {
             margin-top: 20px;
-            display: inline-block;
-            padding: 12px 25px;
-            border-radius: 8px;
-            background: #00C6FF;
-            color: #000;
-            text-decoration: none;
+            padding: 12px 28px;
+            background: #49ff88;
+            border-radius: 10px;
+            border: none;
+            color: #001f0f;
             font-weight: 600;
+            cursor: pointer;
             transition: 0.3s;
         }
 
         .btn:hover {
-            background: #4B9FFF;
+            background: white;
+            color: #0A0F29;
+            box-shadow: 0 0 20px #49ff88;
         }
 
-        /* SECTION */
         section {
-            padding: 80px 10%;
+            padding: 80px 40px;
+            text-align: center;
         }
 
         h3 {
             font-size: 30px;
-            margin-bottom: 10px;
-            color: #A6C7FF;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-            gap: 25px;
-            margin-top: 20px;
+            margin-bottom: 20px;
+            color: #82ff9e;
         }
 
         .card {
-            padding: 20px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: #00C6FF;
-            box-shadow: 0 0 15px #00c7ff2a;
+            background: #111831;
+            padding: 25px;
+            margin: 20px auto;
+            border-radius: 14px;
+            max-width: 800px;
+            box-shadow: 0 0 20px rgba(0,255,120,0.1);
         }
 
         footer {
+            background: #050814;
             text-align: center;
-            padding: 25px;
-            opacity: 0.5;
-            font-size: 14px;
+            padding: 18px;
+            color: #8f9bb5;
+            margin-top: 50px;
         }
 
     </style>
 </head>
+
 <body>
 
-    <!-- NAVBAR -->
+<header>
+    <h1>OSIS SMK Negeri 2 Setu</h1>
     <nav>
-        <h1>OSIS SMKN 2 SETU</h1>
-        <div>
-            <a href="#about">About</a>
-            <a href="#program">Programs</a>
-            <a href="#contact">Contact</a>
-        </div>
+        <a href="#profile">Profil</a>
+        <a href="#program">Program Kerja</a>
+        <a href="#contact">Kontak</a>
     </nav>
+</header>
 
-    <!-- HERO -->
-    <div class="hero">
-        <div class="hero-text">
-            <h2>OSIS SMK Negeri 2 Setu</h2>
-            <p>Mengembangkan kreativitas, kepemimpinan, dan inovasi siswa melalui kegiatan yang modern, elegan, dan berjiwa teknologi.</p>
-            <a href="#about" class="btn">Explore Now</a>
-        </div>
+<section class="hero">
+    <h2>Organisasi Siswa Intra Sekolah</h2>
+    <p>Berintegritas, Kreatif, Modern, dan Berjiwa Kepemimpinan</p>
+    <button class="btn">Selengkapnya</button>
+</section>
+
+<section id="profile">
+    <h3>Profil OSIS</h3>
+    <div class="card">
+        <p>OSIS SMK Negeri 2 Setu adalah wadah pengembangan karakter dan kreativitas siswa dalam bidang akademik, organisasi, dan sosial. Kami bergerak untuk membangun lingkungan sekolah yang lebih aktif, modern, dan berintegritas.</p>
     </div>
+</section>
 
-    <!-- ABOUT -->
-    <section id="about">
-        <h3>Tentang OSIS</h3>
-        <p>OSIS SMK Negeri 2 Setu adalah organisasi yang berfokus pada pengembangan karakter, kreativitas, leadership, dan partisipasi aktif siswa dalam menciptakan lingkungan sekolah yang inovatif dan inspiratif.</p>
-    </section>
+<section id="program">
+    <h3>Program Kerja</h3>
+    <div class="card">
+        <p>• Pengembangan karakter dan mental leadership<br>
+        • Festival OSIS & Class Meeting<br>
+        • Kegiatan sosial dan bakti lingkungan<br>
+        • Pengembangan teknologi dan literasi digital<br>
+        • Event olahraga & seni</p>
+    </div>
+</section>
 
-    <!-- PROGRAM -->
-    <section id="program">
-        <h3>Program Unggulan</h3>
-        <div class="grid">
-            <div class="card">
-                <h4>Leadership & Training</h4>
-                <p>Melatih kemampuan kepemimpinan untuk membentuk generasi siswa aktif dan bertanggung jawab.</p>
-            </div>
-            <div class="card">
-                <h4>Event & Projects</h4>
-                <p>Menghadirkan berbagai kegiatan kreatif, kompetisi, dan projek berbasis teknologi.</p>
-            </div>
-            <div class="card">
-                <h4>Student Community</h4>
-                <p>Membangun ruang kolaborasi antar siswa untuk berkarya dan berprestasi.</p>
-            </div>
-        </div>
-    </section>
+<section id="contact">
+    <h3>Kontak</h3>
+    <div class="card">
+        <p>Email: osis@smkn2setu.sch.id<br>
+        Instagram: @osisdusett.official</p>
+    </div>
+</section>
 
-    <!-- CONTACT -->
-    <section id="contact">
-        <h3>Contact</h3>
-        <p>Instagram: @osis.duasetu<br>Email: osis@smkn2setu.sch.id</p>
-    </section>
-
-    <footer>
-        © 2025 OSIS SMKN 2 Setu — All Rights Reserved
-    </footer>
+<footer>
+    © 2025 OSIS SMK Negeri 2 Setu — All Rights Reserved
+</footer>
 
 </body>
 </html>
