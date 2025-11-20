@@ -1,3 +1,12 @@
+<!--
+  File: index.html
+  Purpose: Modern + Elegant + Minimalist homepage for OSIS SMKN 2 Setu
+  Colors: Navy (primary) + Green (accent)
+  Instructions: Copy the full content below into `index.html` in your repo.
+  If you prefer a separate style.css, the CSS is inside the <style> tag and
+  also repeated at the end of this file between /* --- style.css (SEPARATE) --- */ comments.
+-->
+
 <!doctype html>
 <html lang="id">
 <head>
@@ -6,173 +15,301 @@
   <title>OSIS SMK Negeri 2 Setu — Official</title>
   <meta name="description" content="Website resmi OSIS SMK Negeri 2 Setu — pusat informasi kegiatan, program kerja, dan dokumentasi." />
 
+  <!-- Google Font: Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
-        body {
-            margin: 0;
-            font-family: "Poppins", sans-serif;
-            background: #ffffff; /* Putih bersih */
-            color: #0A0F29; /* Navy tua untuk teks utama */
-        }
+    /* ===== Theme variables ===== */
+    :root{
+      --navy-900:#071226; /* very deep navy */
+      --navy-800:#0b2236;
+      --navy-700:#113049;
+      --green-500:#27ae60; /* accent */
+      --green-400:#2ecc71;
+      --muted:#b8c6d6;
+      --glass: rgba(255,255,255,0.03);
+      --radius:12px;
+      --max-width:1100px;
+    }
 
-        header {
-            background: #0A0F29; /* Navy tua stabil */
-            color: white;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
+    /* ===== Base ===== */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Poppins',system-ui,Segoe UI,Roboto,Helvetica,Arial;
+      color: #eaf4f8;
+      background: linear-gradient(180deg,var(--navy-900) 0%, #071a2b 60%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
 
-        header h1 {
-            margin: 0;
-            font-size: 24px;
-            font-weight: 600;
-        }
+    a{color:inherit;text-decoration:none}
 
-        nav a {
-            margin: 0 12px;
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 500;
-            transition: 0.3s;
-        }
+    /* ===== Container ===== */
+    .container{max-width:var(--max-width);margin:0 auto;padding:0 20px}
 
-        nav a:hover {
-            color: #82ff9e;
-        }
+    /* ===== Navbar ===== */
+    nav{
+      position:fixed;left:0;right:0;top:0;z-index:50;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(90deg, rgba(8,18,30,0.55), rgba(8,18,30,0.35));
+      border-bottom:1px solid rgba(255,255,255,0.03);
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--navy-700),var(--navy-800));
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--green-400);box-shadow:0 4px 18px rgba(6,18,30,0.6);
+    }
+    .brand h1{font-size:16px;margin:0;color:var(--muted);font-weight:600}
+    .brand p{margin:0;font-size:12px;color:#98b0c6}
 
-        .hero {
-            background: #000000; /* Hitam elegan */
-            color: white;
-            text-align: center;
-            padding: 120px 40px;
-        }
+    .nav-links{display:flex;gap:18px;align-items:center}
+    .nav-links a{font-size:15px;color:var(--muted);padding:8px 12px;border-radius:8px}
+    .nav-links a:hover{color:var(--green-400);background:var(--glass)}
+    .btn-primary{background:var(--green-500);color:#06221b;padding:10px 14px;border-radius:10px;font-weight:600}
 
-        .hero h2 {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
+    /* Mobile nav */
+    .menu-toggle{display:none}
 
-        .hero p {
-            font-size: 18px;
-            opacity: 0.8;
-        }
+    /* ===== Hero ===== */
+    .hero{min-height:72vh;display:flex;align-items:center}
+    .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:40px;align-items:center}
+    .hero-title{font-size:44px;line-height:1.05;margin:0 0 14px;background:linear-gradient(90deg,var(--green-400),#7be4a4);-webkit-background-clip:text;color:transparent}
+    .hero-sub{color:var(--muted);margin:0 0 20px;font-size:17px}
 
-        .btn {
-            margin-top: 20px;
-            padding: 12px 32px;
-            background: #0A0F29; /* Navy tua */
-            color: white;
-            border: none;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+    .card-cta{background:rgba(255,255,255,0.03);padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.04)}
 
-        .btn:hover {
-            background: #000;
-            box-shadow: 0 0 12px rgba(0,0,0,0.4);
-        }
+    /* ===== Sections ===== */
+    section{padding:70px 0}
+    .section-title{font-size:26px;color:var(--green-400);margin-bottom:12px}
+    .lead{color:var(--muted);max-width:720px}
 
-        section {
-            padding: 70px 40px;
-            text-align: center;
-            background: #ffffff; /* Putih clean */
-        }
+    /* Grid cards */
+    .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .card{background:rgba(255,255,255,0.02);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .card h4{margin:0 0 8px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
 
-        h3 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #0A0F29;
-        }
+    /* Team / Pengurus */
+    .team{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px}
+    .member{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;text-align:center}
+    .avatar{width:86px;height:86px;border-radius:12px;margin:0 auto 12px;background:linear-gradient(135deg,var(--navy-700),var(--navy-800));display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--green-400)}
+    .member h5{margin:0 0 6px}
+    .member small{color:var(--muted)}
 
-        .card {
-            background: #f8f8f8; /* Abu sangat terang */
-            padding: 25px;
-            margin: 20px auto;
-            border-radius: 12px;
-            max-width: 800px;
-            box-shadow: 0 0 12px rgba(0,0,0,0.1);
-            color: #0A0F29;
-            font-size: 16px;
-            line-height: 1.6;
-        }
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+    .gallery img{width:100%;height:140px;object-fit:cover;border-radius:10px;display:block}
 
-        footer {
-            background: #0A0F29;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
-    </style>
+    /* Footer */
+    footer{padding:28px 0;color:var(--muted);text-align:center;border-top:1px solid rgba(255,255,255,0.02)}
+
+    /* ===== Responsive ===== */
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr}
+      .nav-links{display:none}
+      .menu-toggle{display:inline-block}
+      .logo{width:40px;height:40px}
+      .hero-title{font-size:34px}
+    }
+
+    @media (max-width:480px){
+      .hero-title{font-size:28px}
+      .hero-sub{font-size:15px}
+    }
+
+    /* small util */
+    .muted{color:var(--muted)}
+    .gap-12{gap:12px}
+
+  </style>
 </head>
 <body>
 
+  <!-- NAVBAR -->
   <nav>
-    <div class="nav-inner">
-      <div class="logo">DS</div>
+    <div class="nav-inner container">
+      <div class="brand">
+        <div class="logo">DS</div>
+        <div>
+          <h1>OSIS SMKN 2 Setu</h1>
+          <p>Official — Dusett</p>
+        </div>
+      </div>
+
       <div class="nav-links">
         <a href="#about">About</a>
         <a href="#programs">Programs</a>
         <a href="#team">Pengurus</a>
         <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
+        <a href="#contact" class="btn-primary">Contact</a>
       </div>
+
+      <button class="menu-toggle" aria-label="toggle menu">☰</button>
     </div>
   </nav>
 
+  <!-- HERO -->
   <header class="hero">
-    <h1 class="hero-title">Organisasi Modern yang Membangun Kreativitas & Kepemimpinan.</h1>
-    <p class="hero-sub">OSIS SMK Negeri 2 Setu bergerak sebagai pusat inovasi, kegiatan siswa, dan pengembangan karakter berbasis teknologi.</p>
-    <a href="#programs" class="btn-primary">Lihat Program</a>
+    <div class="container hero-grid">
+      <div>
+        <h2 class="hero-title">Membangun kepemimpinan dan kreativitas digital di SMK Negeri 2 Setu.</h2>
+        <p class="hero-sub">OSIS SMKN 2 Setu hadir sebagai wadah siswa untuk berkarya — melalui program kerja inovatif, event berkualitas, dan komunitas kreatif yang mendukung perkembangan kompetensi serta karakter.</p>
+
+        <div style="display:flex;gap:12px;margin-top:18px;align-items:center">
+          <a href="#programs" class="btn-primary">Lihat Program</a>
+          <a href="#about" style="padding:10px 14px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);font-weight:600;color:var(--muted)">Tentang Kami</a>
+        </div>
+      </div>
+
+      <aside class="card-cta">
+        <h3 style="margin:0 0 8px;color:var(--green-400)">Info Singkat</h3>
+        <p class="muted" style="margin:0 0 12px">Terhubung dengan kami untuk update kegiatan, pendaftaran acara, dan dokumentasi.</p>
+        <div style="display:flex;gap:10px">
+          <div style="flex:1">
+            <strong>Visi</strong>
+            <p class="muted" style="margin:6px 0 0;font-size:13px">Menjadi organisasi siswa yang kreatif, berintegritas, dan adaptif terhadap teknologi.</p>
+          </div>
+        </div>
+      </aside>
+    </div>
   </header>
 
-  <section id="about">
-    <h2 class="section-title">Tentang Kami</h2>
-    <p>OSIS SMK Negeri 2 Setu hadir untuk mengembangkan kreativitas siswa dalam organisasi, teknologi, dan kegiatan sosial yang berdampak nyata.</p>
-  </section>
+  <main>
+    <!-- ABOUT -->
+    <section id="about" class="container">
+      <h3 class="section-title">Tentang OSIS</h3>
+      <p class="lead">OSIS SMK Negeri 2 Setu berperan aktif mengembangkan karakter, kepemimpinan, dan kreativitas siswa melalui program kerja yang relevan dengan kebutuhan era digital. Kami mendorong kolaborasi antar anggota, guru, dan pihak sekolah untuk menciptakan lingkungan belajar yang produktif.</p>
+    </section>
 
-  <section id="programs">
-    <h2 class="section-title">Program Unggulan</h2>
-    <div class="grid">
-      <div class="card"><h3>Leadership</h3><p>Pelatihan kepemimpinan modern dan mental leadership.</p></div>
-      <div class="card"><h3>Tech Projects</h3><p>Pengembangan aplikasi, IoT, design digital, dan inovasi kreatif.</p></div>
-      <div class="card"><h3>Event School</h3><p>Festival OSIS, class meeting, seni, olahraga, dan kegiatan sosial.</p></div>
-    </div>
-  </section>
+    <!-- PROGRAMS -->
+    <section id="programs" class="container">
+      <h3 class="section-title">Program Unggulan</h3>
+      <div class="grid">
+        <div class="card">
+          <h4>Leadership & Training</h4>
+          <p>Pelatihan soft-skill dan kepemimpinan untuk membentuk siswa yang bertanggung jawab dan siap bersaing.</p>
+        </div>
+        <div class="card">
+          <h4>Tech Projects</h4>
+          <p>Proyek berbasis teknologi: pengembangan aplikasi sederhana, IoT, hingga konten digital kreatif.</p>
+        </div>
+        <div class="card">
+          <h4>Event & Community</h4>
+          <p>Penyelenggaraan festival, lomba, workshop, dan kolaborasi komunitas siswa.</p>
+        </div>
+      </div>
+    </section>
 
-  <section id="team">
-    <h2 class="section-title">Pengurus OSIS</h2>
-    <div class="team">
-      <div class="member"><div class="avatar">KA</div><h4>Kepala OSIS</h4><p>Nama Lengkap</p></div>
-      <div class="member"><div class="avatar">WK</div><h4>Wakil</h4><p>Nama Lengkap</p></div>
-      <div class="member"><div class="avatar">SK</div><h4>Sekretaris</h4><p>Nama Lengkap</p></div>
-      <div class="member"><div class="avatar">BD</div><h4>Bendahara</h4><p>Nama Lengkap</p></div>
-    </div>
-  </section>
+    <!-- TEAM -->
+    <section id="team" class="container">
+      <h3 class="section-title">Pengurus OSIS</h3>
+      <div class="team">
+        <div class="member">
+          <div class="avatar">KA</div>
+          <h5>Kepala OSIS</h5>
+          <small class="muted">Nama Lengkap</small>
+        </div>
 
-  <section id="gallery">
-    <h2 class="section-title">Dokumentasi</h2>
-    <div class="gallery">
-      <img src="https://images.unsplash.com/photo-1525373693036-012d6b1d8c5d" />
-      <img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d" />
-      <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e" />
-    </div>
-  </section>
+        <div class="member">
+          <div class="avatar">WK</div>
+          <h5>Wakil</h5>
+          <small class="muted">Nama Lengkap</small>
+        </div>
 
-  <section id="contact">
-    <h2 class="section-title">Kontak</h2>
-    <p>Instagram: @osis.duasetu • Email: osis@smkn2setu.sch.id</p>
-  </section>
+        <div class="member">
+          <div class="avatar">DK</div>
+          <h5>Sekretaris</h5>
+          <small class="muted">Nama Lengkap</small>
+        </div>
+
+        <div class="member">
+          <div class="avatar">BM</div>
+          <h5>Bendahara</h5>
+          <small class="muted">Nama Lengkap</small>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="container">
+      <h3 class="section-title">Dokumentasi Kegiatan</h3>
+      <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1515165562835-c92f2f3f25d8?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=aaa" alt="kegiatan 1">
+        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=bbb" alt="kegiatan 2">
+        <img src="https://images.unsplash.com/photo-1525373693036-012d6b1d8c5d?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=ccc" alt="kegiatan 3">
+        <img src="https://images.unsplash.com/photo-1508931132296-9b6a5d0f62f1?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=ddd" alt="kegiatan 4">
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="container">
+      <h3 class="section-title">Kontak & Sosial</h3>
+      <div style="display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start">
+        <div class="card">
+          <h4>Hubungi Kami</h4>
+          <p class="muted">Instagram: <strong>@osis.duasetu</strong><br>Email: <strong>osis@smkn2setu.sch.id</strong><br>Alamat: SMK Negeri 2 Setu</p>
+        </div>
+
+        <div class="card">
+          <h4>Newsletter</h4>
+          <p class="muted">Masukkan email untuk mendapat update kegiatan.</p>
+          <form onsubmit="event.preventDefault();alert('Terimakasih! (contoh)');" style="display:flex;gap:8px;margin-top:10px">
+            <input type="email" placeholder="email@domain.com" required style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit">
+            <button class="btn-primary" type="submit">Daftar</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
 
   <footer>
-    © 2025 OSIS SMK Negeri 2 Setu — All Rights Reserved
+    <div class="container">
+      © <span id="year"></span> OSIS SMK Negeri 2 Setu • All rights reserved
+    </div>
   </footer>
+
+  <script>
+    // small js: set year and smooth scroll
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        e.preventDefault();
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+      })
+    })
+  </script>
+
+  <!--
+    --- style.css (SEPARATE) ---
+    If you want a separate style.css file, copy everything between this comment and the closing comment below
+  -->
+  <!--
+:root{
+  --navy-900:#071226;
+  --navy-800:#0b2236;
+  --navy-700:#113049;
+  --green-500:#27ae60;
+  --green-400:#2ecc71;
+  --muted:#b8c6d6;
+  --glass: rgba(255,255,255,0.03);
+  --radius:12px;
+  --max-width:1100px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:'Poppins',system-ui,Segoe UI,Roboto,Helvetica,Arial;color: #eaf4f8;background: linear-gradient(180deg,var(--navy-900) 0%, #071a2b 60%);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;line-height:1.5}
+
+... (the rest is identical to the <style> block above) 
+-->
 
 </body>
 </html>
