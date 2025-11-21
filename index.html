@@ -1,123 +1,259 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login Info Terbaru</title>
-
+<title>Website OSIS - Login + Explosion Effect</title>
 <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #0a0a0a;
-        color: #fff;
-    }
+/* -------------------------
+   RESET
+-------------------------- */
+* { margin:0; padding:0; box-sizing:border-box; font-family:Arial }
 
-    /* LOGIN PAGE */
-    #login-page {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background: #111;
-        text-align: center;
-    }
+/* -------------------------
+   LOGIN PAGE
+-------------------------- */
+#login-page {
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#0b0b0b;
+  color:white;
+}
 
-    #login-box {
-        background: #1a1a1a;
-        padding: 25px;
-        border-radius: 12px;
-        width: 300px;
-        box-shadow: 0 0 20px rgba(255,255,255,0.1);
-        animation: fadeUp 0.7s ease forwards;
-        opacity: 0;
-    }
+.login-box {
+  width:320px;
+  background:#141414;
+  padding:25px;
+  border-radius:14px;
+  box-shadow:0 0 20px #000;
+}
 
-    #login-box input {
-        width: 90%;
-        padding: 10px;
-        margin: 8px 0;
-        border-radius: 6px;
-        border: none;
-        outline: none;
-    }
+.login-box h2 { text-align:center; margin-bottom:20px }
+.login-box input {
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border:1px solid #555;
+  border-radius:8px;
+  background:#1f1f1f;
+  color:white;
+}
 
-    #login-box button {
-        width: 100%;
-        padding: 10px;
-        margin-top: 10px;
-        border: none;
-        background: #4e9cff;
-        color: #fff;
-        border-radius: 6px;
-        cursor: pointer;
-        font-weight: bold;
-    }
+.login-box button {
+  width:100%;
+  padding:10px;
+  background:#ff7a00;
+  border:0;
+  border-radius:8px;
+  margin-top:10px;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
 
-    #error-msg {
-        color: #ff4e4e;
-        margin-top: 10px;
-        display: none;
-    }
+/* -------------------------
+   EXPLOSION SCENE
+-------------------------- */
+#explosion-page {
+  display:none;
+  height:100vh;
+  background:#000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
 
-    @keyframes fadeUp {
-        to { opacity: 1; transform: translateY(0); }
-        from { opacity: 0; transform: translateY(20px); }
-    }
+.explosion-scene {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: radial-gradient(circle at center, #ffb300, #ff4d00, #1a0000);
+  animation: scenePulse 5s infinite alternate ease-in-out;
+}
 
-    /* MAIN CONTENT */
-    #info-page {
-        display: none;
-        padding: 40px;
-    }
+.fragment {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #ffddaa;
+  border-radius: 2px;
+  animation: fragmentFly 1.6s ease-out forwards;
+  opacity: 0;
+}
 
-    h1 {
-        text-align: center;
-    }
+@keyframes fragmentFly {
+  0%   { transform: translate(0,0) scale(1); opacity:1 }
+  100% { transform: translate(var(--x), var(--y)) scale(0.4); opacity:0 }
+}
+
+.flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, #ffffffaa, transparent 70%);
+  animation: flashBoom .6s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes flashBoom {
+  0% {opacity:0}
+  20% {opacity:1}
+  100% {opacity:0}
+}
+
+.shake { animation: shakeScreen .45s ease-in-out; }
+
+@keyframes shakeScreen {
+  0% { transform: translate(0,0) }
+  20% { transform: translate(4px,-4px) }
+  40% { transform: translate(-4px,4px) }
+  60% { transform: translate(3px,-3px) }
+  80% { transform: translate(-3px,3px) }
+  100% { transform: translate(0,0) }
+}
+
+.burst-ring {
+  position:absolute;
+  inset:0;
+  margin:auto;
+  width:40px;
+  height:40px;
+  border:3px solid #ffefc0;
+  border-radius:50%;
+  animation: ringExpand 1s ease-out forwards;
+  opacity:0;
+}
+
+@keyframes ringExpand {
+  0% { transform:scale(0.2); opacity:1 }
+  100% { transform:scale(8); opacity:0 }
+}
+
+.ray {
+  position:absolute;
+  width:2px;
+  height:140px;
+  background:linear-gradient(to bottom, #fff8, transparent);
+  left:50%; top:50%;
+  transform-origin: top;
+  opacity:0;
+  animation: rayFlash .6s ease-out forwards;
+}
+
+@keyframes rayFlash {
+  0% { opacity:0 }
+  20% { opacity:1 }
+  100% { opacity:0 }
+}
+
+@keyframes scenePulse {
+  0% { filter:brightness(1) }
+  100% { filter:brightness(1.3) }
+}
+
+/* -------------------------
+   MAIN PAGE
+-------------------------- */
+#main-page {
+  display:none;
+  padding:40px;
+  background:white;
+  height:100vh;
+}
 </style>
 </head>
-
 <body>
 
-<!-- LOGIN -->
+<!-- =========================
+      LOGIN PAGE
+========================= -->
 <div id="login-page">
-    <div id="login-box">
-        <h2>Login Untuk Info Terbaru</h2>
-        <input type="email" id="email" placeholder="Email">
-        <input type="password" id="password" placeholder="Password">
-        <button onclick="login()">Masuk</button>
-        <div id="error-msg">Email atau Password salah!</div>
-    </div>
+  <div class="login-box">
+    <h2>LOGIN</h2>
+    <input id="email" type="email" placeholder="Email">
+    <input id="pw" type="password" placeholder="Password">
+    <button onclick="login()">Masuk</button>
+  </div>
 </div>
 
-<!-- INFO PAGE -->
-<div id="info-page">
-    <h1>INFO TERBARU</h1>
-    <p>Selamat! Kamu berhasil masuk dan bisa melihat informasi terbaru dari website ini.</p>
+<!-- =========================
+      EXPLOSION
+========================= -->
+<div id="explosion-page">
+  <div id="explosion" class="explosion-scene"></div>
+</div>
 
-    <p>Tambahkan konten info terbaru kamu di sini…</p>
+<!-- =========================
+      MAIN PAGE
+========================= -->
+<div id="main-page">
+  <h1>SELAMAT DATANG DI WEBSITE OSIS</h1>
+  <p>Kamu sekarang sudah login dan melihat halaman utama.</p>
 </div>
 
 <script>
-    // =============================
-    // EMAIL & PASSWORD YANG VALID
-    // =============================
-    const validEmail   = "user@gmail.com";  // ganti email kamu
-    const validPass    = "info123";         // ganti password kamu
+/* =========================
+   LOGIN SIMPLE
+========================= */
+function login() {
+  const email = document.getElementById("email").value;
+  const pw = document.getElementById("pw").value;
 
-    function login() {
-        let email = document.getElementById("email").value;
-        let pass  = document.getElementById("password").value;
-        let error = document.getElementById("error-msg");
+  if (email.trim() === "" || pw.trim() === "") {
+    alert("Email dan password wajib diisi.");
+    return;
+  }
 
-        if (email === validEmail && pass === validPass) {
-            document.getElementById("login-page").style.display = "none";
-            document.getElementById("info-page").style.display = "block";
-        } else {
-            error.style.display = "block";
-        }
-    }
+  // Pindah ke effect explosion
+  document.getElementById("login-page").style.display = "none";
+  document.getElementById("explosion-page").style.display = "flex";
+
+  setTimeout(triggerExplosion, 300);
+}
+
+/* =========================
+   EXPLOSION ANIMASI
+========================= */
+function triggerExplosion() {
+  const box = document.getElementById("explosion");
+
+  box.innerHTML = "";
+  box.classList.remove("shake");
+  void box.offsetWidth;
+
+  const flash = document.createElement("div");
+  flash.classList.add("flash");
+  box.appendChild(flash);
+
+  const ring = document.createElement("div");
+  ring.classList.add("burst-ring");
+  box.appendChild(ring);
+
+  for (let r = 0; r < 6; r++) {
+    let ray = document.createElement("div");
+    ray.classList.add("ray");
+    ray.style.transform = `translate(-50%, -50%) rotate(${r * 60}deg)`;
+    box.appendChild(ray);
+  }
+
+  for (let i = 0; i < 22; i++) {
+    let f = document.createElement("div");
+    f.classList.add("fragment");
+    f.style.setProperty('--x', (Math.random()*300 - 150) + "px");
+    f.style.setProperty('--y', (Math.random()*260 - 130) + "px");
+    box.appendChild(f);
+  }
+
+  box.classList.add("shake");
+
+  // Setelah animasi → buka halaman utama
+  setTimeout(() => {
+    document.getElementById("explosion-page").style.display = "none";
+    document.getElementById("main-page").style.display = "block";
+  }, 1400);
+}
 </script>
 
 </body>
