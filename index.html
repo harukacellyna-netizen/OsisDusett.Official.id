@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Website Dengan Login</title>
+<title>Login Info Terbaru</title>
 
 <style>
     body {
@@ -13,9 +13,7 @@
         color: #fff;
     }
 
-    /* =====================
-       LOGIN PAGE
-    ====================== */
+    /* LOGIN PAGE */
     #login-page {
         display: flex;
         flex-direction: column;
@@ -57,7 +55,7 @@
         font-weight: bold;
     }
 
-    #login-error {
+    #error-msg {
         color: #ff4e4e;
         margin-top: 10px;
         display: none;
@@ -68,10 +66,8 @@
         from { opacity: 0; transform: translateY(20px); }
     }
 
-    /* =====================
-       WEBSITE MAIN
-    ====================== */
-    #main-content {
+    /* MAIN CONTENT */
+    #info-page {
         display: none;
         padding: 40px;
     }
@@ -84,51 +80,45 @@
 
 <body>
 
-<!-- =======================
-     LOGIN PAGE
-========================= -->
+<!-- LOGIN -->
 <div id="login-page">
     <div id="login-box">
-        <h2>Login</h2>
-        <input type="text" id="username" placeholder="Username">
+        <h2>Login Untuk Info Terbaru</h2>
+        <input type="email" id="email" placeholder="Email">
         <input type="password" id="password" placeholder="Password">
         <button onclick="login()">Masuk</button>
-        <div id="login-error">Username atau password salah!</div>
+        <div id="error-msg">Email atau Password salah!</div>
     </div>
 </div>
 
-<!-- =======================
-     WEBSITE CONTENT
-========================= -->
-<div id="main-content">
-    <h1>SELAMAT DATANG!</h1>
-    <p>Website berhasil diakses setelah login.</p>
+<!-- INFO PAGE -->
+<div id="info-page">
+    <h1>INFO TERBARU</h1>
+    <p>Selamat! Kamu berhasil masuk dan bisa melihat informasi terbaru dari website ini.</p>
 
-    <p>Isi website kamu taruh di sini…</p>
+    <p>Tambahkan konten info terbaru kamu di sini…</p>
 </div>
 
 <script>
-    // =======================================
-    // GANTI PASSWORD DI SINI
-    // =======================================
-    const validUsername = "admin";
-    const validPassword = "12345";   // ganti sesuka kamu
+    // =============================
+    // EMAIL & PASSWORD YANG VALID
+    // =============================
+    const validEmail   = "user@gmail.com";  // ganti email kamu
+    const validPass    = "info123";         // ganti password kamu
 
     function login() {
-        let user = document.getElementById("username").value;
-        let pass = document.getElementById("password").value;
-        let errorBox = document.getElementById("login-error");
+        let email = document.getElementById("email").value;
+        let pass  = document.getElementById("password").value;
+        let error = document.getElementById("error-msg");
 
-        if (user === validUsername && pass === validPassword) {
-            // Tampilkan website
+        if (email === validEmail && pass === validPass) {
             document.getElementById("login-page").style.display = "none";
-            document.getElementById("main-content").style.display = "block";
+            document.getElementById("info-page").style.display = "block";
         } else {
-            errorBox.style.display = "block";
+            error.style.display = "block";
         }
     }
 </script>
 
 </body>
 </html>
-a
