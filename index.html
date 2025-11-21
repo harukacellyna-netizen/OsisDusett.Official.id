@@ -1,258 +1,111 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>Website OSIS - Login + Explosion Effect</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login — OSIS SMKN 2 Setu</title>
+
 <style>
-/* -------------------------
-   RESET
--------------------------- */
-* { margin:0; padding:0; box-sizing:border-box; font-family:Arial }
+    * {margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
 
-/* -------------------------
-   LOGIN PAGE
--------------------------- */
-#login-page {
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:#0b0b0b;
-  color:white;
-}
+    body {
+        height:100vh;
+        overflow:hidden;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background:#000;
+    }
 
-.login-box {
-  width:320px;
-  background:#141414;
-  padding:25px;
-  border-radius:14px;
-  box-shadow:0 0 20px #000;
-}
+    /* ===== Background Infinity Castle ===== */
+    .bg {
+        position:absolute;
+        top:0;left:0;right:0;bottom:0;
+        background:url("/mnt/data/18bb0cfb-8727-41e3-9e1e-0eff78d4fb23.png");
+        background-size:cover;
+        background-position:center;
+        filter:brightness(0.4) blur(2px);
+        animation:moveBg 18s ease-in-out infinite alternate;
+    }
 
-.login-box h2 { text-align:center; margin-bottom:20px }
-.login-box input {
-  width:100%;
-  padding:10px;
-  margin:8px 0;
-  border:1px solid #555;
-  border-radius:8px;
-  background:#1f1f1f;
-  color:white;
-}
+    @keyframes moveBg {
+        0%   {transform:scale(1) translateY(0px);}
+        100% {transform:scale(1.15) translateY(-40px);}
+    }
 
-.login-box button {
-  width:100%;
-  padding:10px;
-  background:#ff7a00;
-  border:0;
-  border-radius:8px;
-  margin-top:10px;
-  color:white;
-  font-size:16px;
-  cursor:pointer;
-}
+    /* ===== Card Login ===== */
+    .login-box {
+        position:relative;
+        width:340px;
+        background:rgba(0,0,0,0.55);
+        padding:28px;
+        border-radius:14px;
+        box-shadow:0 0 20px rgba(255,150,80,0.25);
+        backdrop-filter:blur(6px);
+        animation:fadeIn .7s ease;
+    }
 
-/* -------------------------
-   EXPLOSION SCENE
--------------------------- */
-#explosion-page {
-  display:none;
-  height:100vh;
-  background:#000;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
+    @keyframes fadeIn {
+        from {opacity:0;transform:translateY(20px);}
+        to   {opacity:1;transform:translateY(0);}
+    }
 
-.explosion-scene {
-  position: relative;
-  width: 100%;
-  height: 260px;
-  border-radius: 14px;
-  overflow: hidden;
-  background: radial-gradient(circle at center, #ffb300, #ff4d00, #1a0000);
-  animation: scenePulse 5s infinite alternate ease-in-out;
-}
+    h2 {
+        text-align:center;
+        color:#ffcc99;
+        margin-bottom:20px;
+    }
 
-.fragment {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: #ffddaa;
-  border-radius: 2px;
-  animation: fragmentFly 1.6s ease-out forwards;
-  opacity: 0;
-}
+    .input {
+        width:100%;
+        padding:12px;
+        margin-bottom:14px;
+        border:none;
+        border-radius:8px;
+        background:rgba(255,255,255,0.12);
+        color:#fff;
+    }
 
-@keyframes fragmentFly {
-  0%   { transform: translate(0,0) scale(1); opacity:1 }
-  100% { transform: translate(var(--x), var(--y)) scale(0.4); opacity:0 }
-}
+    button {
+        width:100%;
+        padding:12px;
+        border:none;
+        border-radius:8px;
+        background:#ff7b39;
+        color:#000;
+        font-weight:700;
+        cursor:pointer;
+        transition:.3s;
+    }
 
-.flash {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, #ffffffaa, transparent 70%);
-  animation: flashBoom .6s ease-out forwards;
-  opacity: 0;
-}
-
-@keyframes flashBoom {
-  0% {opacity:0}
-  20% {opacity:1}
-  100% {opacity:0}
-}
-
-.shake { animation: shakeScreen .45s ease-in-out; }
-
-@keyframes shakeScreen {
-  0% { transform: translate(0,0) }
-  20% { transform: translate(4px,-4px) }
-  40% { transform: translate(-4px,4px) }
-  60% { transform: translate(3px,-3px) }
-  80% { transform: translate(-3px,3px) }
-  100% { transform: translate(0,0) }
-}
-
-.burst-ring {
-  position:absolute;
-  inset:0;
-  margin:auto;
-  width:40px;
-  height:40px;
-  border:3px solid #ffefc0;
-  border-radius:50%;
-  animation: ringExpand 1s ease-out forwards;
-  opacity:0;
-}
-
-@keyframes ringExpand {
-  0% { transform:scale(0.2); opacity:1 }
-  100% { transform:scale(8); opacity:0 }
-}
-
-.ray {
-  position:absolute;
-  width:2px;
-  height:140px;
-  background:linear-gradient(to bottom, #fff8, transparent);
-  left:50%; top:50%;
-  transform-origin: top;
-  opacity:0;
-  animation: rayFlash .6s ease-out forwards;
-}
-
-@keyframes rayFlash {
-  0% { opacity:0 }
-  20% { opacity:1 }
-  100% { opacity:0 }
-}
-
-@keyframes scenePulse {
-  0% { filter:brightness(1) }
-  100% { filter:brightness(1.3) }
-}
-
-/* -------------------------
-   MAIN PAGE
--------------------------- */
-#main-page {
-  display:none;
-  padding:40px;
-  background:white;
-  height:100vh;
-}
+    button:hover {background:#ffac6a}
 </style>
 </head>
+
 <body>
 
-<!-- =========================
-      LOGIN PAGE
-========================= -->
-<div id="login-page">
-  <div class="login-box">
-    <h2>LOGIN</h2>
-    <input id="email" type="email" placeholder="Email">
-    <input id="pw" type="password" placeholder="Password">
+<div class="bg"></div>
+
+<div class="login-box">
+    <h2>Login OSIS</h2>
+
+    <input id="email" type="email" class="input" placeholder="Email" required>
+    <input id="password" type="password" class="input" placeholder="Password" required>
+
     <button onclick="login()">Masuk</button>
-  </div>
-</div>
-
-<!-- =========================
-      EXPLOSION
-========================= -->
-<div id="explosion-page">
-  <div id="explosion" class="explosion-scene"></div>
-</div>
-
-<!-- =========================
-      MAIN PAGE
-========================= -->
-<div id="main-page">
-  <h1>SELAMAT DATANG DI WEBSITE OSIS</h1>
-  <p>Kamu sekarang sudah login dan melihat halaman utama.</p>
 </div>
 
 <script>
-/* =========================
-   LOGIN SIMPLE
-========================= */
-function login() {
-  const email = document.getElementById("email").value;
-  const pw = document.getElementById("pw").value;
+function login(){
+    const email = document.getElementById("email").value;
+    const pw = document.getElementById("password").value;
 
-  if (email.trim() === "" || pw.trim() === "") {
-    alert("Email dan password wajib diisi.");
-    return;
-  }
-
-  // Pindah ke effect explosion
-  document.getElementById("login-page").style.display = "none";
-  document.getElementById("explosion-page").style.display = "flex";
-
-  setTimeout(triggerExplosion, 300);
-}
-
-/* =========================
-   EXPLOSION ANIMASI
-========================= */
-function triggerExplosion() {
-  const box = document.getElementById("explosion");
-
-  box.innerHTML = "";
-  box.classList.remove("shake");
-  void box.offsetWidth;
-
-  const flash = document.createElement("div");
-  flash.classList.add("flash");
-  box.appendChild(flash);
-
-  const ring = document.createElement("div");
-  ring.classList.add("burst-ring");
-  box.appendChild(ring);
-
-  for (let r = 0; r < 6; r++) {
-    let ray = document.createElement("div");
-    ray.classList.add("ray");
-    ray.style.transform = `translate(-50%, -50%) rotate(${r * 60}deg)`;
-    box.appendChild(ray);
-  }
-
-  for (let i = 0; i < 22; i++) {
-    let f = document.createElement("div");
-    f.classList.add("fragment");
-    f.style.setProperty('--x', (Math.random()*300 - 150) + "px");
-    f.style.setProperty('--y', (Math.random()*260 - 130) + "px");
-    box.appendChild(f);
-  }
-
-  box.classList.add("shake");
-
-  // Setelah animasi → buka halaman utama
-  setTimeout(() => {
-    document.getElementById("explosion-page").style.display = "none";
-    document.getElementById("main-page").style.display = "block";
-  }, 1400);
+    // ✨ Email & Password sederhana
+    if(email === "admin@osis.com" && pw === "12345"){
+        window.location.href = "index.html"; // masuk ke website OSIS
+    } else {
+        alert("Email atau password salah!");
+    }
 }
 </script>
 
