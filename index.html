@@ -1,176 +1,340 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Infinity Castle FX</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>OSIS Dusett Official</title>
+
 <style>
-    body {
-        margin:0;
-        overflow:hidden;
-        background:black;
-        font-family:Arial;
-        color:white;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#0f172a;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* BACKGROUND */
+.bg{
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(circle at top left,#1e3a8a,#0f172a 40%),
+        radial-gradient(circle at bottom right,#7c3aed,#0f172a 40%);
+    z-index:-2;
+}
+
+.blur{
+    position:fixed;
+    width:400px;
+    height:400px;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:.3;
+    animation:float 8s ease-in-out infinite alternate;
+}
+
+.blur1{
+    background:#3b82f6;
+    top:-100px;
+    left:-100px;
+}
+
+.blur2{
+    background:#9333ea;
+    bottom:-100px;
+    right:-100px;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(0px);
+    }
+    to{
+        transform:translateY(40px);
+    }
+}
+
+/* NAVBAR */
+nav{
+    width:100%;
+    padding:20px 10%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    backdrop-filter:blur(12px);
+    background:rgba(0,0,0,0.2);
+    z-index:100;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+    color:#60a5fa;
+}
+
+nav ul{
+    display:flex;
+    gap:20px;
+    list-style:none;
+}
+
+nav a{
+    text-decoration:none;
+    color:white;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#60a5fa;
+}
+
+/* HERO */
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:40px;
+}
+
+.hero-content{
+    max-width:800px;
+}
+
+.hero h1{
+    font-size:60px;
+    margin-bottom:20px;
+    background:linear-gradient(to right,#60a5fa,#c084fc);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    font-size:20px;
+    color:#cbd5e1;
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
+.btn{
+    display:inline-block;
+    padding:14px 28px;
+    background:linear-gradient(to right,#2563eb,#7c3aed);
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+/* SECTION */
+section{
+    padding:100px 10%;
+}
+
+.section-title{
+    font-size:40px;
+    margin-bottom:50px;
+    text-align:center;
+}
+
+/* CARD */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    padding:30px;
+    border-radius:20px;
+    backdrop-filter:blur(10px);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border-color:#60a5fa;
+}
+
+.card h3{
+    margin-bottom:15px;
+    color:#60a5fa;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:40px;
+    color:#94a3b8;
+    border-top:1px solid rgba(255,255,255,0.1);
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+    .hero h1{
+        font-size:42px;
     }
 
-    /* =========================
-        PARALLAX LAYER
-    ==========================*/
-    .layer{
-        position:absolute;
-        width:200%;
-        height:200%;
-        top:-50%;
-        left:-50%;
-        background-repeat:repeat;
-        animation: floatLayer 40s linear infinite;
-        opacity:0.25;
-    }
-    #layer1{ background-image:url("https://i.imgur.com/1qQ9EXM.png"); animation-duration:35s; }
-    #layer2{ background-image:url("https://i.imgur.com/VszTn6e.png"); animation-duration:50s; opacity:0.18;}
-    #layer3{ background-image:url("https://i.imgur.com/cl8fO1v.png"); animation-duration:70s; opacity:0.1;}
-
-    @keyframes floatLayer{
-        from{ transform:translateX(0);}
-        to{ transform:translateX(-20%);}
+    nav{
+        flex-direction:column;
+        gap:15px;
     }
 
-    /* =========================
-        VERTICAL LIGHT BEAMS
-    ==========================*/
-    .beam{
-        position:absolute;
-        top:0;
-        width:4px;
-        height:100vh;
-        background:linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0));
-        opacity:0.4;
-        animation: beamMove 4s linear infinite;
-        filter:blur(1px);
+    nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
     }
-    @keyframes beamMove{
-        from{ transform:translateY(-100%); }
-        to{ transform:translateY(100%); }
-    }
-
-    /* =========================
-        PARTICLE SHARDS
-    ==========================*/
-    .particle{
-        position:absolute;
-        width:6px; height:6px;
-        background:white;
-        opacity:0.7;
-        animation: particleFly 3s linear infinite;
-    }
-    @keyframes particleFly{
-        from{ transform:translateY(0) scale(1); opacity:1; }
-        to{ transform:translateY(-200px) scale(0.2); opacity:0; }
-    }
-
-    /* =========================
-        CASTLE COLLAPSE MODE
-    ==========================*/
-    .shake{
-        animation: shakeScreen 0.15s infinite;
-    }
-    @keyframes shakeScreen{
-        0%{ transform:translate(0,0); }
-        25%{ transform:translate(3px,-3px); }
-        50%{ transform:translate(-3px,3px); }
-        75%{ transform:translate(4px,2px); }
-        100%{ transform:translate(0,0); }
-    }
-    .flash{
-        position:absolute;
-        width:100%;
-        height:100%;
-        background:red;
-        top:0; left:0;
-        opacity:0;
-        animation: flashRed 0.2s linear infinite;
-        z-index:999;
-    }
-    @keyframes flashRed{
-        0%{ opacity:0; }
-        50%{ opacity:0.25; }
-        100%{ opacity:0; }
-    }
-
-    /* =========================
-        BUTTON MODE
-    ==========================*/
-    .btnToggle{
-        position:absolute;
-        z-index:1000;
-        top:20px; right:20px;
-        padding:10px 18px;
-        background:#222;
-        color:white;
-        border:1px solid white;
-        cursor:pointer;
-        font-size:14px;
-        border-radius:4px;
-    }
+}
 </style>
 </head>
 <body>
 
-<button class="btnToggle" onclick="castleCollapse()">CASTLE COLLAPSE</button>
+<div class="bg"></div>
+<div class="blur blur1"></div>
+<div class="blur blur2"></div>
 
-<div id="layer1" class="layer"></div>
-<div id="layer2" class="layer"></div>
-<div id="layer3" class="layer"></div>
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">OSIS DUSETT</div>
 
-<div id="beamContainer"></div>
-<div id="particleContainer"></div>
-<div id="flashScreen"></div>
+    <ul>
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#program">Program</a></li>
+        <li><a href="#team">Pengurus</a></li>
+        <li><a href="#contact">Kontak</a></li>
+    </ul>
+</nav>
 
-<script>
-/* =========================
-   CREATE LIGHT BEAMS
-==========================*/
-for(let i=0;i<30;i++){
-    const b = document.createElement("div");
-    b.className = "beam";
-    b.style.left = (Math.random()*100)+"vw";
-    b.style.animationDelay = (Math.random()*3)+"s";
-    document.getElementById("beamContainer").appendChild(b);
-}
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>OSIS Dusett Official</h1>
 
-/* =========================
-   PARTICLE GENERATOR
-==========================*/
-setInterval(()=>{
-    const p = document.createElement("div");
-    p.className = "particle";
-    p.style.left = (Math.random()*100)+"vw";
-    p.style.top = "100vh";
-    p.style.animationDuration = (2 + Math.random()*2)+"s";
-    document.getElementById("particleContainer").appendChild(p);
-    setTimeout(()=>p.remove(),3000);
-},90);
+        <p>
+            Website resmi OSIS Dusett sebagai pusat informasi,
+            kegiatan sekolah, program kerja, dan media komunikasi siswa.
+        </p>
 
-/* =========================
-   CASTLE COLLAPSE
-==========================*/
-let collapseActive = false;
+        <a href="#about" class="btn">Jelajahi</a>
+    </div>
+</section>
 
-function castleCollapse(){
-    collapseActive = !collapseActive;
+<!-- ABOUT -->
+<section id="about">
+    <h2 class="section-title">Tentang Kami</h2>
 
-    if(collapseActive){
-        document.body.classList.add("shake");
-        flashScreen = document.createElement("div");
-        flashScreen.className = "flash";
-        flashScreen.id = "flash";
-        document.body.appendChild(flashScreen);
-    } else {
-        document.body.classList.remove("shake");
-        const f = document.getElementById("flash");
-        if(f) f.remove();
-    }
-}
-</script>
+    <div class="cards">
+        <div class="card">
+            <h3>Visi</h3>
+            <p>
+                Menjadikan OSIS sebagai organisasi yang aktif,
+                kreatif, disiplin, dan inspiratif.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Misi</h3>
+            <p>
+                Mengembangkan potensi siswa melalui kegiatan
+                akademik maupun non akademik.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Tujuan</h3>
+            <p>
+                Menciptakan lingkungan sekolah yang positif,
+                modern, dan berprestasi.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- PROGRAM -->
+<section id="program">
+    <h2 class="section-title">Program Kerja</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Class Meeting</h3>
+            <p>Kegiatan perlombaan antar kelas.</p>
+        </div>
+
+        <div class="card">
+            <h3>Festival Sekolah</h3>
+            <p>Ajang kreativitas dan pentas seni siswa.</p>
+        </div>
+
+        <div class="card">
+            <h3>Bakti Sosial</h3>
+            <p>Kegiatan sosial dan kepedulian masyarakat.</p>
+        </div>
+    </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+    <h2 class="section-title">Pengurus OSIS</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Ketua OSIS</h3>
+            <p>Nama Ketua OSIS</p>
+        </div>
+
+        <div class="card">
+            <h3>Wakil Ketua</h3>
+            <p>Nama Wakil Ketua</p>
+        </div>
+
+        <div class="card">
+            <h3>Sekretaris</h3>
+            <p>Nama Sekretaris</p>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h2 class="section-title">Kontak</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Instagram</h3>
+            <p>@osisdusett</p>
+        </div>
+
+        <div class="card">
+            <h3>Email</h3>
+            <p>osis@dusett.sch.id</p>
+        </div>
+
+        <div class="card">
+            <h3>Alamat</h3>
+            <p>Sekolah Dusett Indonesia</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © 2026 OSIS Dusett Official — All Rights Reserved
+</footer>
 
 </body>
 </html>
